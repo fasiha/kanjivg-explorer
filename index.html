@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>KanjiVG Explorer</title>
+    <style>
+      html, body {
+       height: 98%;
+      }
+
+      #joyo {
+        float: right;
+        max-width: 10%;
+        height: 100%;
+        overflow: scroll;
+      }
+      
+      .clickable-joyo:hover {
+        background-color: yellow;
+        cursor: pointer;
+      }
+
+      .node {
+        font-size: 16pt;
+      }
+
+      .link {
+        fill: none;
+        stroke: #666;
+        stroke-width: 1.5px;
+      }
+
+      circle {
+        fill: #ccc;
+        stroke: #333;
+        stroke-width: 1.5px;
+      }
+
+      #arrow {
+        fill: #000;
+        stroke: #000;
+      }
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    
+    <script type="text/javascript" src="kanjivgexplorer.js"></script>
+    <meta charset="UTF-8">
+  </head>
+
+  <body>
+
+    <div id="joyo"></div>
+
+  </body>
+</html>
