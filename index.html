@@ -2,45 +2,7 @@
 <html>
   <head>
     <title>KanjiVG Explorer</title>
-    <style>
-      html, body {
-       height: 98%;
-      }
-
-      #joyo {
-        float: right;
-        max-width: 10%;
-        height: 100%;
-        overflow: scroll;
-      }
-      
-      .clickable-joyo:hover {
-        background-color: yellow;
-        cursor: pointer;
-      }
-
-      .node {
-        font-size: 16pt;
-      }
-
-      .link {
-        fill: none;
-        stroke: #666;
-        stroke-width: 1.5px;
-      }
-
-      circle {
-        fill: #ccc;
-        stroke: #333;
-        stroke-width: 1.5px;
-      }
-
-      #arrow {
-        fill: #000;
-        stroke: #000;
-      }
-    </style>
-
+    <link rel="stylesheet" type="text/css" href="kanjivgexplorer.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     
@@ -49,8 +11,28 @@
   </head>
 
   <body>
+  
+  <div id="joyo"></div>
+  
+  <h1>KanjiVG Explorer</h1>
+  
+  <p>
+  The <a href="http://kanjivg.tagaini.net/">KanjiVG Project</a> is a widely-used database of kanji components and stroke orders. This page helps visualize the elemental hierarchy of  kanji, as described by the KanjiVG community, specifically for the 2'200 official regular-use <em>jōyō</em> kanji shown to the right (ordered per James Heisig).
 
-    <div id="joyo"></div>
+  <p>
+  Please click on a kanji in the list to the right to see its graphical visualization below. KanjiVG's SVG is linked in each box for convenience. The display is <a href="http://bl.ocks.org/mbostock/4062045">D3's flexible force-directed layout</a> which is entirely too flexible for such structured hierarchies. And please get in touch via <a href="https://github.com/fasiha/kanjivg-explorer">GitHub</a>.
+  
+  <p>
+  To highlight some aspects this database, consider the first example, 蔵. KanjiVG sees each kanji's strokes as grouped into common "elements". Elements may be other kanji, like 臣, or radicals, like 戈. Because elements can be nested both in space and time, visualizing elements' hierarchies as directed graphs can result in cycles and bidirectional links. (Some dragging to rearrange the graph may be necessary to clearly see the cycle. Also note that the original form of an element is given in parenthesis, e.g., "艹 (艸)".)
+
+  <p>
+  The second example, 渓, shows the variability between a component element and its appearance in a kanji. Specifically, KanjiVG identifies the combined 爪/夫 element as 奚. I, personally, do not understand the etymological or linguistic reason for this identification.
+
+  <p>
+  Consider 環, the third example. While the Chinese primitive 𧘇 (part of the Japanese kanji 衣) may seem an ideal candidate for representing the lower-right set of strokes, KanjiVG does not recognize these Chinese primitives. Therefore, 𧘇 is represented as a set of individual, free-living strokes. An added unusuality here: the horizontal line could have been represented as 一 (a bona fide kanji) but isn't.
+
+  <p>
+  The fourth example, 剰, emphasizes the first: KanjiVG sees elements as organizing the stroke order, and so its descriptors may give rise to unusual elemental genetics.
 
   </body>
 </html>

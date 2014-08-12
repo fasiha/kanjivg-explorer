@@ -108,6 +108,9 @@ function graph2svg(graph, kanji) {
         .attr("width", width)
         .attr("height", height);
 
+    var border = svg.append("rect")
+            .attr({x: 0, y: 0, height: height, width: width, "class": "svg-border"});
+
     var textid = svg.append("a")
         .attr("xlink:href", kanji2url(kanji))
         .append("text")
@@ -141,7 +144,7 @@ function graph2svg(graph, kanji) {
     var circle = svg.append("g").selectAll("circle")
         .data(graph.nodes)
         .enter().append("circle")
-        .attr("r", 6)
+        .attr("r", 4)
         .call(force.drag);
 
     var node = svg.append("g").selectAll(".node")
@@ -149,8 +152,7 @@ function graph2svg(graph, kanji) {
         .enter().append("text")
         .attr("class", "node")
         .text(function (n) {return n.element + (n.original ? "("+n.original+")" : "");})
-        .style({"fill": function (n, i) {return (i==0) ? "Indigo" : "black";},
-                "font-size": function (n,i) {return (i==0) ? "18pt" : "16pt";}})
+        .classed("primary-node", function (n, i) {return i==0;})
         .call(force.drag);
 
     node.append("title")
