@@ -20,7 +20,7 @@
   The <a href="http://kanjivg.tagaini.net/">KanjiVG Project</a> is a widely-used database of kanji components and stroke orders. This page helps visualize the elemental hierarchy of  kanji, as described by the KanjiVG community, specifically for the 2'200 official regular-use <em>jōyō</em> kanji shown to the right (ordered per James Heisig).
 
   <p>
-  Please click on a kanji in the list to the right to see its graphical visualization below. KanjiVG's SVG is linked in each box for convenience. The display is <a href="http://bl.ocks.org/mbostock/4062045">D3's flexible force-directed layout</a> which is entirely too flexible for such structured hierarchies. And please get in touch via <a href="https://github.com/fasiha/kanjivg-explorer">GitHub</a>.
+  Please click on a kanji in the list to the right to see its graphical visualization below. Drag nodes to move them, double-click them to see their graphs. KanjiVG's SVG is linked in each box for convenience. D3.js' <a href="http://bl.ocks.org/mbostock/4062045">force-directed layout</a> is fancy but entirely too flexible for such structured hierarchies. And please get in touch via <a href="https://github.com/fasiha/kanjivg-explorer">GitHub</a>.
   
   <p>
   To highlight some aspects this database, consider the first example, 蔵. KanjiVG sees each kanji's strokes as grouped into common "elements". Elements may be other kanji, like 臣, or radicals, like 戈. Because elements can be nested both in space and time, visualizing elements' hierarchies as directed graphs can result in cycles and bidirectional links. (Some dragging to rearrange the graph may be necessary to clearly see the cycle. Also note that the original form of an element is given in parenthesis, e.g., "艹 (艸)".)

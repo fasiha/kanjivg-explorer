@@ -52,6 +52,10 @@ circle {
   stroke-width: 1.5px;
 }
 
+.clickable-node {
+  cursor: crosshair;
+}
+
 .clickable-joyo:hover {
   background-color: #333333;
   color: #BFBFBF;

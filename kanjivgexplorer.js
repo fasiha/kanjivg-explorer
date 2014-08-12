@@ -29,6 +29,8 @@ function kanji2url(k) {
 // tied to the D3 example at http://bl.ocks.org/mbostock/4062045 and
 // isn't the most sane.
 function kanji2graph(kanji) {
+	if (joyo.search(kanji) < 0) {return;}
+
     var nodes_dict = {}; // kvg:element -> index in nodes_arr
     var nodes_arr = [];
     var links_arr = [];
@@ -59,7 +61,8 @@ function kanji2graph(kanji) {
                 parentelement = parelt;
                 if (!(parelt in nodes_dict)) {
                     nodes_dict[parelt] = nodes_arr.length;
-                    nodes_arr.push({"element": parelt, "original": parorig});
+                    nodes_arr.push({"element": parelt, "original": parorig,
+                		"joyo": joyo.search(parelt) > -1 ? "true" : "false"});
                 }
             }
 
@@ -76,7 +79,8 @@ function kanji2graph(kanji) {
                     // connect it to parent
                     if (!(kvgelt in nodes_dict)) {
                         nodes_dict[kvgelt] = nodes_arr.length;
-                        nodes_arr.push({"element": kvgelt, "original": kvgorig});
+                        nodes_arr.push({"element": kvgelt, "original": kvgorig,
+                    		"joyo": joyo.search(kvgelt) > -1 ? "true" : "false"});
                     }
                     links_arr.push({"source": nodes_dict[parentelement],
                         "target": nodes_dict[kvgelt], "value": 1});
@@ -126,7 +130,7 @@ function graph2svg(graph, kanji) {
         .attr("markerWidth", 6)
         .attr("markerHeight", 6)
         .attr("orient", "auto")
-      .append("path")
+        .append("path")
         .attr("d", "M0,-5L10,0L0,5");
 
     force
@@ -150,21 +154,23 @@ function graph2svg(graph, kanji) {
     var node = svg.append("g").selectAll(".node")
         .data(graph.nodes)
         .enter().append("text")
-        .attr("class", "node")
         .text(function (n) {return n.element + (n.original ? "("+n.original+")" : "");})
+        .attr({"class": "node", "element": function (n) {return n.element;}})
         .classed("primary-node", function (n, i) {return i==0;})
+        .classed("clickable-node", function (n, i) {return n.joyo === "true";})
+        .on("dblclick", function() {kanji2graph(this.getAttribute('element'));})
         .call(force.drag);
 
     node.append("title")
         .text(function(d) { return d.element; });
 
     function tick() {
-        link.attr("d", linkArc);
+        link.attr("d", linkLine);
         node.attr("transform", transform);
         circle.attr("transform", transform);
     }
     
-    function linkArc(d) {
+    function linkLine(d) {
       return "M" + d.source.x + "," + d.source.y + "L"  + d.target.x + "," + d.target.y;
     }
     
